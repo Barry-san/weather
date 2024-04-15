@@ -9,7 +9,8 @@ export default function useGetCoordinates(city: string) {
   }
   return useQuery({
     queryFn: () => getCoordinates(),
-    queryKey: [`getCoords${city}`],
+    queryKey: [`getCoords${city.toLowerCase()}`],
     enabled: !!city,
+    staleTime: 180000,
   });
 }

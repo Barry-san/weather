@@ -10,27 +10,28 @@ import { useSearchContext } from "../context/SearchContext";
 function App() {
   const [city, setCity] = useState<string>("");
   const [formData, setFormData] = useState<string>("");
-  const { data, refetch, isError, error, isFetching } = useGetCoordinates(city);
-  const [unit, setUnit] = useState<"metric" | "imperial">("metric");
+  const { data, isError, error, isFetching } = useGetCoordinates(city);
   const { recentSearches, setRecentSearches } = useSearchContext()!;
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setCity(() => formData);
+    // refetch();
+    if (!formData.includes(formData)) {
+      setRecentSearches(() => [formData, ...recentSearches.slice(0, 4)]);
+    }
+  };
   return (
     <>
       <Header />
       <main className="max-w-2xl p-4 mx-auto grid grid-rows-2 gap-4 ">
         <div>
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setCity(() => formData);
-              refetch();
-              setRecentSearches(() => [
-                formData,
-                ...recentSearches.slice(0, 4),
-              ]);
-            }}
+            onSubmit={handleFormSubmit}
             className="flex flex-col gap-3 py-6"
           >
             <input
+              required
               id="city"
               type="text"
               placeholder="Enter your city e.g London"
@@ -53,7 +54,6 @@ function App() {
           {data?.data.length > 0 && (
             <Weather
               coordinates={{ lat: data?.data[0]?.lat, lon: data?.data[0]?.lon }}
-              unit={unit}
             />
           )}
         </div>

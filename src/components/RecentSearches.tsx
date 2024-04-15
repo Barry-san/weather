@@ -2,6 +2,7 @@ import { useSearchContext } from "../context/SearchContext";
 
 export default function RecentSearches() {
   const { recentSearches } = useSearchContext()!;
+  localStorage.setItem("recent_searches", JSON.stringify(recentSearches));
   return (
     <div className="flex flex-col p-4 ">
       <h2 className="text-lg underline font-semibold">Recent Searches:</h2>
@@ -10,7 +11,7 @@ export default function RecentSearches() {
       ) : (
         <>
           {recentSearches.map((location) => (
-            <p>{location}</p>
+            <p key={location}>{location}</p>
           ))}
         </>
       )}

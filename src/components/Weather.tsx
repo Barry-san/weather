@@ -1,11 +1,12 @@
 import useGetWeather from "../api/useGetWeather";
+import { useUnitContext } from "../context/UnitsContext";
 
 type WeatherPropsType = {
   coordinates: { lat: number; lon: number };
-  unit: "metric" | "imperial";
 };
 
-function Weather({ coordinates, unit }: WeatherPropsType) {
+function Weather({ coordinates }: WeatherPropsType) {
+  const { unit } = useUnitContext()!;
   const units = {
     imperial: {
       temperature: "F",
@@ -16,7 +17,7 @@ function Weather({ coordinates, unit }: WeatherPropsType) {
       speed: "Km/hr",
     },
   };
-  const { data, isLoading, isError, error } = useGetWeather(coordinates, unit);
+  const { data, isLoading, isError, error } = useGetWeather(coordinates);
 
   return (
     <main className="w-full grid py-4">
@@ -26,10 +27,10 @@ function Weather({ coordinates, unit }: WeatherPropsType) {
         {data ? (
           <>
             <p>
-              <span className="font-bold">
+              <span className="font-bold text-xl">
                 {data.data.name}, {data.data.sys.country}
-              </span>{" "}
-              | <span>{data.data.weather[0]?.description}</span>
+              </span>
+              {"  "}| <span>{data.data.weather[0]?.description}</span>
             </p>
             <p className="text-xl md:text-xl">
               Temperature : {data?.data.main.temp} &deg;
