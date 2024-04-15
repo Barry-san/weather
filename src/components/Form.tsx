@@ -1,12 +1,10 @@
 import { useState } from "react";
-
-import { useSearchContext } from "../context/SearchContext";
-import { useLocationContext } from "../context/CityContext";
+import { useAppContext } from "../context/AppContext";
 
 export default function Form() {
   const [city, setCity] = useState<string>("");
-  const { setLocation } = useLocationContext()!;
-  const { recentSearches, setRecentSearches } = useSearchContext()!;
+  const { setLocation, recentSearches, setRecentSearches } = useAppContext()!;
+
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLocation(city);

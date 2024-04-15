@@ -1,7 +1,7 @@
-import { useSearchContext } from "../context/SearchContext";
+import { useAppContext } from "../context/AppContext";
 
 export default function RecentSearches() {
-  const { recentSearches } = useSearchContext()!;
+  const { recentSearches } = useAppContext()!;
   localStorage.setItem("recent_searches", JSON.stringify(recentSearches));
   return (
     <div className="flex flex-col">

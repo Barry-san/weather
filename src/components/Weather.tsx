@@ -1,5 +1,5 @@
+import { useAppContext } from "../context/AppContext";
 import useGetWeather from "../api/useGetWeather";
-import { useUnitContext } from "../context/UnitsContext";
 import Loader from "./Loader";
 
 type WeatherPropsType = {
@@ -7,7 +7,7 @@ type WeatherPropsType = {
 };
 
 function Weather({ coordinates }: WeatherPropsType) {
-  const { unit } = useUnitContext()!;
+  const { unit } = useAppContext()!;
   const units = {
     imperial: {
       temperature: "F",

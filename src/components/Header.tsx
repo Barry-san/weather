@@ -1,7 +1,7 @@
-import { useUnitContext } from "../context/UnitsContext";
+import { useAppContext } from "../context/AppContext";
 
 export default function Header() {
-  const { setUnit } = useUnitContext()!;
+  const { setUnit } = useAppContext()!;
   return (
     <header className="sticky top-0 w-full border-b p-4 font-serif italic flex flex-wrap gap-4 justify-between">
       <h1 className="text-2xl text-blue-500">Weather app</h1>

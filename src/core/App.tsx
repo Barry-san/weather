@@ -5,10 +5,10 @@ import useGetCoordinates from "../api/useGetCoordinates";
 import LocationNotFound from "../components/LocationNotFound";
 import RecentSearches from "../components/RecentSearches";
 import Form from "../components/Form";
-import { useLocationContext } from "../context/CityContext";
+import { useAppContext } from "../context/AppContext";
 
 function App() {
-  const { location } = useLocationContext()!;
+  const { location } = useAppContext()!;
   const { data, isError, error, isFetching } = useGetCoordinates(location);
 
   return (
