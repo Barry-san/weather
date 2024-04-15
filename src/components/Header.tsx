@@ -11,7 +11,7 @@ export default function Header() {
           name="units"
           id=""
           onChange={(e) => setUnit(e.target.value as "metric" | "imperial")}
-          className="font-sans text-xs md:text-sm"
+          className="font-sans text-xs md:text-sm p-2"
         >
           <option value="metric">Metric (&deg; C, Km/h)</option>
           <option value="imperial">Imperial (&deg; F, Mile/h)</option>
