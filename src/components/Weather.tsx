@@ -1,5 +1,6 @@
 import useGetWeather from "../api/useGetWeather";
 import { useUnitContext } from "../context/UnitsContext";
+import Loader from "./Loader";
 
 type WeatherPropsType = {
   coordinates: { lat: number; lon: number };
@@ -22,24 +23,26 @@ function Weather({ coordinates }: WeatherPropsType) {
   return (
     <main className="w-full grid py-4">
       <div>
-        {isLoading && "loading"}
+        {isLoading && <Loader />}
         {isError && <p>{error.message}</p>}
         {data ? (
-          <>
+          <section className="flex flex-col gap-3">
             <p>
               <span className="font-bold text-xl">
                 {data.data.name}, {data.data.sys.country}
               </span>
               {"  "}| <span>{data.data.weather[0]?.description}</span>
             </p>
-            <p className="text-xl md:text-xl">
-              Temperature : {data?.data.main.temp} &deg;
-              {units[unit].temperature}
-            </p>
-            <p>
-              Wind speed : {data?.data.wind.speed} {units[unit].speed}
-            </p>
-          </>
+            <div>
+              <p className="text-xl md:text-xl">
+                Temperature : {data?.data.main.temp} &deg;
+                {units[unit].temperature}
+              </p>
+              <p className="">
+                Wind speed : {data?.data.wind.speed} {units[unit].speed}
+              </p>
+            </div>
+          </section>
         ) : null}
       </div>
     </main>
