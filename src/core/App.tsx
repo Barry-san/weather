@@ -17,8 +17,11 @@ function App() {
     e.preventDefault();
     setCity(() => formData);
     // refetch();
-    if (!formData.includes(formData)) {
-      setRecentSearches(() => [formData, ...recentSearches.slice(0, 4)]);
+    if (!recentSearches.includes(formData.toLowerCase())) {
+      setRecentSearches(() => [
+        formData.toLowerCase(),
+        ...recentSearches.slice(0, 4),
+      ]);
     }
   };
   return (
