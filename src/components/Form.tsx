@@ -1,35 +1,41 @@
-// import { useState } from "react";
-// import useGetCoordinates from "../api/useGetCoordinates";
-// import { useLocationContext } from "../context/LocationContext";
+import { useState } from "react";
 
-// export default function Form() {
-//   const [city, setCity] = useState<string>("");
-//   const { data, refetch, isError, error, isFetching } = useGetCoordinates(city);
-//   return (
-//     <>
-//       <form
-//         onSubmit={(e) => {
-//           e.preventDefault();
-//           refetch();
-//         }}
-//         className="flex  items-center gap-3 p-6"
-//       >
-//         <label htmlFor="city" className="flex gap-3 items-center">
-//           City:
-//           <input
-//             id="city"
-//             type="text"
-//             placeholder="Enter your city e.g London"
-//             value={city}
-//             onSubmit={(e) => setCity(e.currentTarget.value)}
-//             className="outline outline-1 py-1 px-3"
-//           />
-//         </label>
-//         <button role="form" className="bg-blue-200 px-5 py-1">
-//           Get forecast
-//         </button>
-//       </form>
-//       ;
-//     </>
-//   );
-// }
+import { useSearchContext } from "../context/SearchContext";
+import { useLocationContext } from "../context/CityContext";
+
+export default function Form() {
+  const [city, setCity] = useState<string>("");
+  const { setLocation } = useLocationContext()!;
+  const { recentSearches, setRecentSearches } = useSearchContext()!;
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLocation(city);
+    if (!recentSearches.includes(city.toLowerCase())) {
+      setRecentSearches(() => [
+        city.toLowerCase(),
+        ...recentSearches.slice(0, 4),
+      ]);
+    }
+  };
+  return (
+    <>
+      <form onSubmit={handleFormSubmit} className="flex flex-col gap-3 py-6">
+        <input
+          required
+          id="city"
+          type="text"
+          placeholder="Enter your city e.g London"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          className="border border-black py-2 px-3 rounded"
+        />
+        <button
+          role="form"
+          className="bg-blue-300 border border-black py-2 rounded"
+        >
+          Get forecast
+        </button>
+      </form>
+    </>
+  );
+}
