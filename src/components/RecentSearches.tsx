@@ -1,9 +1,9 @@
 import { useAppContext } from "../context/AppContext";
 
 export default function RecentSearches() {
-  const { recentSearches, setRecentSearches } = useAppContext()!;
+  const { recentSearches, setRecentSearches, setLocation } = useAppContext()!;
 
-  localStorage.setItem("recent_searches", JSON.stringify(recentSearches)); // whenever a new item is added, component is rerendered and localstorage is updated
+  localStorage.setItem("recent_searches", JSON.stringify(recentSearches));
   return (
     <div className="flex flex-col">
       <h2 className="text-lg underline font-semibold">Recent Searches:</h2>
@@ -12,14 +12,23 @@ export default function RecentSearches() {
           Your recently searched locations will appear here
         </p>
       ) : (
-        <>
+        <div className="flex flex-col items-start py-3">
           {recentSearches.map((location) => (
-            <p key={location}>{location}</p>
+            <button
+              key={location}
+              onClick={() => setLocation(location)}
+              className="md:text-lg"
+            >
+              {location}
+            </button>
           ))}
-          <button onClick={() => setRecentSearches([])}>
+          <button
+            onClick={() => setRecentSearches([])}
+            className="my-4 border border-black px-4"
+          >
             Clear search history
           </button>
-        </>
+        </div>
       )}
     </div>
   );
