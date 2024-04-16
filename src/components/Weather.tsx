@@ -19,6 +19,7 @@ function Weather({ coordinates }: WeatherPropsType) {
     },
   };
   const { data, isLoading, isError, error } = useGetWeather(coordinates);
+  console.log(data);
 
   return (
     <main className="w-full grid py-4">

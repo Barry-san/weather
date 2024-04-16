@@ -6,6 +6,7 @@ import LocationNotFound from "../components/LocationNotFound";
 import RecentSearches from "../components/RecentSearches";
 import Form from "../components/Form";
 import { useAppContext } from "../context/AppContext";
+import ErrorComponent from "../components/Error";
 
 function App() {
   const { location } = useAppContext()!;
@@ -18,9 +19,8 @@ function App() {
         <div>
           <Form />
           {isFetching && <Loader />}
-          {isError && (
-            <p className="md:text-2xl font-semibold">{error.message}</p>
-          )}
+          {isError && <ErrorComponent error={error} />}
+          {/*api returns an empty array when no location is found*/}
           {data?.data.length === 0 && <LocationNotFound location={location} />}
           {data?.data.length > 0 && (
             <Weather
