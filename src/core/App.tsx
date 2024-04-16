@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="max-w-2xl p-4 mx-auto grid grid-rows-2 gap-4 ">
+      <main className="max-w-2xl p-4 mx-auto grid grid-rows-2 gap-4  font-roboto">
         <div>
           <Form />
           {isFetching && <Loader />}

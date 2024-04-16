@@ -29,7 +29,7 @@ export default function Form() {
         />
         <button
           role="form"
-          className="bg-blue-300 border border-black py-2 rounded"
+          className="bg-blue-300 border border-black py-2 rounded text-lg"
         >
           Get forecast
         </button>
