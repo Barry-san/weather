@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ErrorComponent({ error }: { error: Error }) {
   return (
     <div>
