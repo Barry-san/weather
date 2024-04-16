@@ -12,7 +12,7 @@ export default function RecentSearches() {
           Your recently searched locations will appear here
         </p>
       ) : (
-        <div className="flex flex-col items-start py-3">
+        <div className="flex flex-col items-start py-3 gap-2">
           {recentSearches.map((location) => (
             <button
               key={location}
