@@ -15,12 +15,12 @@ export default function RecentSearches() {
         </p>
       ) : (
         <section className="flex flex-col items-start py-3 gap-2">
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-col md:flex-row gap-3 flex-wrap items-start">
             {recentSearches.map((location) => (
               <button
                 key={location}
                 onClick={() => setLocation(location)}
-                className="md:text-lg border rounded-full px-4 bg-white capitalize"
+                className="md:text-lg border rounded-full px-4 bg-white capitalize overflow-clip text-clip"
               >
                 {location}
               </button>
