@@ -26,6 +26,7 @@ export default function Form() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
           className="border border-black py-2 px-3 rounded shadow-md"
+          maxLength={60}
         />
         <button
           role="form"
