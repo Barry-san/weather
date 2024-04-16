@@ -25,11 +25,11 @@ export default function Form() {
           placeholder="Enter your city e.g London"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          className="border border-black py-2 px-3 rounded"
+          className="border border-black py-2 px-3 rounded shadow-md"
         />
         <button
           role="form"
-          className="bg-blue-300 border border-black py-2 rounded text-lg"
+          className="bg-blue-300 border border-black py-2 rounded text-lg shadow-md"
         >
           Get forecast
         </button>

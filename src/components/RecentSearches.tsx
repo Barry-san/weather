@@ -14,23 +14,25 @@ export default function RecentSearches() {
           Your recently searched locations will appear here.
         </p>
       ) : (
-        <div className="flex flex-col items-start py-3 gap-2">
-          {recentSearches.map((location) => (
-            <button
-              key={location}
-              onClick={() => setLocation(location)}
-              className="md:text-lg border rounded-full px-4 bg-white capitalize"
-            >
-              {location}
-            </button>
-          ))}
+        <section className="flex flex-col items-start py-3 gap-2">
+          <div className="flex gap-3 flex-wrap">
+            {recentSearches.map((location) => (
+              <button
+                key={location}
+                onClick={() => setLocation(location)}
+                className="md:text-lg border rounded-full px-4 bg-white capitalize"
+              >
+                {location}
+              </button>
+            ))}
+          </div>
           <button
             onClick={() => setRecentSearches([])}
             className="my-6 border border-black px-4 bg-white"
           >
             Clear search history
           </button>
-        </div>
+        </section>
       )}
     </div>
   );
